@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>卐zovpidors卐</title>
 
+<meta name="robots" content="index, follow">
+<meta name="description" content="наебни говна олух">
+<link rel="canonical" href="https://skibidizov67.pages.dev/">
+
+<!-- OpenGraph (для поиска и соцсетей) -->
+<meta property="og:title" content="zovpidors">
+<meta property="og:description" content="наебни говна олух">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://skibidizov67.pages.dev/">
+<meta property="og:image" content="https://skibidizov67.pages.dev/preview.png">
+
 <style>
 html,body{
   margin:0;
@@ -28,7 +39,7 @@ html,body{
   z-index:10;
 }
 
-/* компактный блок */
+/* компактный блок — приподнят */
 #box{
   display:flex;
   flex-direction:column;
@@ -36,6 +47,8 @@ html,body{
   gap:14px;
   max-width:360px;
   width:100%;
+  transform:translateY(-5px)
+  scale(1);
 }
 
 /* верхний текст */
@@ -47,7 +60,7 @@ html,body{
   text-shadow:0 0 14px rgba(255,255,255,.35);
 }
 
-/* кнопка */
+/* ОСНОВНАЯ кнопка (НЕ НАЖИМАЙ) — НЕ ТРОГАЕМ ЛОГИКУ */
 #button{
   position:relative;
   width:250px;
@@ -78,7 +91,7 @@ html,body{
   transform:translateY(3px) scale(.985);
 }
 
-/* текст кнопки */
+/* радужный текст (для НЕ НАЖИМАЙ) */
 #btnText{
   position:absolute;
   inset:0;
@@ -99,13 +112,168 @@ html,body{
   animation:rainbow 2.5s linear infinite;
 }
 
-/* фото снизу */
+/* фото */
 #photo{
   width:270px;
   border-radius:18px;
   box-shadow:0 18px 38px rgba(0,0,0,.9);
   pointer-events:none;
 }
+
+/* ВТОРАЯ КНОПКА (ХОЧЕШЬ ПОИГРАТЬ?) — чёрно-белая, ширина под фото */
+#button2{
+  position:relative;
+  width:270px; /* ровно под фото */
+  height:70px;
+  border-radius:20px;
+  background:linear-gradient(180deg,#111,#333);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,.15),
+    inset 0 -6px 10px rgba(0,0,0,.8),
+    0 14px 30px rgba(0,0,0,.9);
+  cursor:pointer;
+}
+
+#button2::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:22px;
+  background:linear-gradient(90deg,#666,#aaa,#666);
+  z-index:-1;
+}
+
+#btnText2{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:#eaeaea;
+}
+
+#button2:active{
+  transform:translateY(2px) scale(.99);
+}
+
+/* game page styles */
+#gamePage{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:20;
+  background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+  padding:20px;
+}
+
+#gameBox{
+  width:100%;
+  max-width:420px;
+  background:linear-gradient(180deg,#0f1215,#07080a);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 30px 80px rgba(0,0,0,.9);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:center;
+  color:#fff;
+}
+
+/* game button (гунить) - default same look as button2 */
+#gameBtn{
+  position:relative;
+  width:260px;
+  height:80px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#111,#333);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,.12),
+    inset 0 -6px 10px rgba(0,0,0,.8),
+    0 14px 30px rgba(0,0,0,.9);
+  cursor:pointer;
+  overflow:hidden;
+}
+
+/* rainbow effect applied only while .rainbow class present */
+#gameBtn.rainbow{
+  background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, violet);
+  background-size: 400% 100%;
+  animation: flow 1.2s linear;
+  -webkit-background-clip: padding-box;
+}
+
+/* text on the game button - чуть светлее */
+#gameBtnText{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#ffffff; /* чуть светлее чем раньше */
+  z-index:2;
+  pointer-events:none;
+}
+
+/* indicators row */
+#indicators{
+  width:100%;
+  display:flex;
+  gap:12px;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* individual indicator */
+.ind{
+  flex:1;
+  background:linear-gradient(180deg,#0b0d0f,#0f1316);
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);
+  font-weight:800;
+}
+
+/* last result display */
+#lastResult{
+  width:100%;
+  margin-top:6px;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  color:#ffd;
+  text-align:center;
+  padding:6px 10px;
+  border-radius:8px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+/* small back */
+#backBtn{
+  position:absolute;
+  left:12px;
+  top:12px;
+  background:transparent;
+  color:#ddd;
+  border:1px solid rgba(255,255,255,0.03);
+  padding:6px 8px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* misc */
+.smallMuted { color: #aab; font-size:12px; }
 
 @keyframes flow{
   0%{background-position:0% 50%}
@@ -116,7 +284,7 @@ html,body{
   100%{background-position:400%}
 }
 
-/* видео и overlay — без изменений */
+/* video & overlay remain same */
 video{
   position:fixed;
   inset:0;
@@ -139,6 +307,7 @@ video{
 
 <body>
 
+<!-- START / initial screen (kept) -->
 <div id="start">
   <div id="box">
     <div id="warning">卐іоііоощчщч!!!</div>
@@ -148,17 +317,48 @@ video{
     </div>
 
     <img id="photo" src="photo.jpg" alt="">
+
+    <div id="button2">
+      <div id="btnText2">анальные игры</div>
+    </div>
+
   </div>
 </div>
 
+<!-- VIDEO + overlay (existing prank logic) -->
 <video id="video" playsinline loop>
   <source src="trollfacepidor.mp4" type="video/mp4">
 </video>
-
 <div id="overlay"></div>
 <audio id="click" src="click.mp3" preload="auto"></audio>
 
+<!-- GAME PAGE (hidden initially) -->
+<div id="gamePage" aria-hidden="true">
+  <div id="gameBox">
+    <button id="backBtn" type="button">пойти нахуй</button>
+
+    <div id="gameBtn" role="button" aria-pressed="false">
+      <div id="gameBtnText">ГУНИТЬ</div>
+    </div>
+
+    <div id="indicators">
+      <div class="ind">
+        <div class="smallMuted">дрочек:</div>
+        <div id="brochekCount">0</div>
+      </div>
+
+      <div class="ind">
+        <div class="smallMuted">кончил:</div>
+        <div id="zakonchilCount">0</div>
+      </div>
+    </div>
+
+    <div id="lastResult">—</div>
+  </div>
+</div>
+
 <script>
+/* ---------- существующая логика НЕ НАЖИМАЙ (оставлена без изменений) ---------- */
 const btn=document.getElementById('button');
 const start=document.getElementById('start');
 const video=document.getElementById('video');
@@ -216,7 +416,199 @@ setInterval(()=>{
     if(!document.fullscreenElement) fs();
   }
 },900);
+
+/* ---------- НОВАЯ ЛОГИКА: ВТОРАЯ КНОПКА и СТРАНИЦА ИГРЫ ---------- */
+
+const btn2 = document.getElementById('button2');
+const gamePage = document.getElementById('gamePage');
+const backBtn = document.getElementById('backBtn');
+
+const gameBtn = document.getElementById('gameBtn');
+const brochekCountEl = document.getElementById('brochekCount');
+const zakonchilCountEl = document.getElementById('zakonchilCount');
+const lastResultEl = document.getElementById('lastResult');
+
+/* localStorage keys */
+const KEY_BRO = 'g_brochek_v1';
+const KEY_ZAK = 'g_zakonchil_v1';
+const KEY_LAST = 'g_last_v1';
+const KEY_LAST_PRESS = 'g_last_press_v1';
+
+/* load saved values */
+function loadStats(){
+  const bro = parseInt(localStorage.getItem(KEY_BRO)) || 0;
+  const zak = parseInt(localStorage.getItem(KEY_ZAK)) || 0;
+  const last = localStorage.getItem(KEY_LAST) || '—';
+  brochekCountEl.textContent = bro;
+  zakonchilCountEl.textContent = zak;
+  lastResultEl.textContent = last;
+}
+loadStats();
+
+/* helper to format remaining time */
+function formatRemaining(ms){
+  if(ms<=0) return '0s';
+  const s = Math.ceil(ms/1000);
+  const m = Math.floor(s/60);
+  const sec = s % 60;
+  if(m>0) return `${m}м ${sec}с`;
+  return `${sec}с`;
+}
+
+/* show game page */
+btn2.addEventListener('click', ()=>{
+  // show game page overlay (hide start visually)
+  gamePage.style.display='flex';
+  gamePage.setAttribute('aria-hidden','false');
+  // update button disabled state based on localStorage
+  updateGameButtonState();
+});
+
+/* back to main */
+backBtn.addEventListener('click', ()=>{
+  gamePage.style.display='none';
+  gamePage.setAttribute('aria-hidden','true');
+});
+
+/* check if pressing allowed */
+/* cooldown changed to 2 minutes */
+const COOLDOWN_MS = 2 * 60 * 1000;
+
+function canPressNow(){
+  const last = parseInt(localStorage.getItem(KEY_LAST_PRESS)) || 0;
+  const now = Date.now();
+  return (now - last) >= COOLDOWN_MS;
+}
+
+/* update game button state (disable if within cooldown) */
+let gameTimerInterval = null;
+function updateGameButtonState(){
+  const now = Date.now();
+  const last = parseInt(localStorage.getItem(KEY_LAST_PRESS)) || 0;
+  const diff = now - last;
+  const cooldown = COOLDOWN_MS;
+  if(diff >= cooldown){
+    gameBtn.disabled = false;
+    gameBtn.style.opacity = '1';
+    gameBtn.setAttribute('aria-pressed','false');
+    // remove any countdown text overlay
+    gameBtn.querySelector('.cd')?.remove();
+    if(gameTimerInterval){ clearInterval(gameTimerInterval); gameTimerInterval=null; }
+  }else{
+    const rem = cooldown - diff;
+    gameBtn.disabled = true;
+    gameBtn.style.opacity = '0.6';
+    // show remaining overlay
+    let cd = gameBtn.querySelector('.cd');
+    if(!cd){
+      cd = document.createElement('div');
+      cd.className = 'cd';
+      cd.style.position='absolute';
+      cd.style.bottom='6px';
+      cd.style.left='6px';
+      cd.style.right='6px';
+      cd.style.fontSize='12px';
+      cd.style.textAlign='center';
+      cd.style.color='#ddd';
+      cd.style.pointerEvents='none';
+      gameBtn.appendChild(cd);
+    }
+    cd.textContent = 'через ' + formatRemaining(rem);
+    if(gameTimerInterval) clearInterval(gameTimerInterval);
+    gameTimerInterval = setInterval(()=>{
+      const now2 = Date.now();
+      const r = cooldown - (now2 - last);
+      if(r<=0){
+        updateGameButtonState();
+      }else{
+        cd.textContent = 'через ' + formatRemaining(r);
+      }
+    },1000);
+  }
+}
+
+/* perform a single press attempt */
+async function performPress(){
+  if(!canPressNow()) {
+    updateGameButtonState();
+    return;
+  }
+  // mark press time
+  const now = Date.now();
+  localStorage.setItem(KEY_LAST_PRESS, String(now));
+  updateGameButtonState();
+
+  // visual: add rainbow class briefly
+  gameBtn.classList.add('rainbow');
+  setTimeout(()=> gameBtn.classList.remove('rainbow'), 1100);
+
+  // compute outcome
+  const r = Math.random();
+  let outcome = 1;
+  if(r < 0.75){
+    outcome = 1; // brochek
+  } else {
+    // variant2, with 10% chance upgrade to variant3
+    const sub = Math.random();
+    if(sub < 0.10){
+      outcome = 3;
+    } else {
+      outcome = 2;
+    }
+  }
+
+  // update counters
+  let bro = parseInt(localStorage.getItem(KEY_BRO)) || 0;
+  let zak = parseInt(localStorage.getItem(KEY_ZAK)) || 0;
+  let msg = '';
+
+  if(outcome === 1){
+    bro += 1;
+    localStorage.setItem(KEY_BRO, String(bro));
+    msg = 'ты успешно подрочил!';
+  } else if(outcome === 2){
+    zak += 1;
+    localStorage.setItem(KEY_ZAK, String(zak));
+    msg = 'ты кончил!';
+  } else if(outcome === 3){
+    zak += 2; // add 2 for special outcome
+    localStorage.setItem(KEY_ZAK, String(zak));
+    msg = 'ТЫ ОБКОНЧАЛ ВСЮ КОМНАТУ!!!';
+  }
+
+  // save last message
+  localStorage.setItem(KEY_LAST, msg);
+
+  // update UI
+  brochekCountEl.textContent = bro;
+  zakonchilCountEl.textContent = zak;
+  lastResultEl.textContent = msg;
+}
+
+/* game button click */
+gameBtn.addEventListener('click', async ()=>{
+  if(gameBtn.disabled) return;
+  performPress();
+});
+
+/* on game page load, update stats and button state */
+document.addEventListener('visibilitychange', ()=>{
+  // when returning to page, refresh state
+  if(!document.hidden && gamePage.style.display==='flex'){
+    loadStats();
+    updateGameButtonState();
+  }
+});
+
+/* load saved stats when script runs */
+loadStats();
+/* if gamePage visible update state */
+updateGameButtonState();
+
+/* ensure DOM cleanup on unload not required - localStorage holds state permanently */
+
+/* end of game logic */
 </script>
 
 </body>
-</html>
+  </html>
